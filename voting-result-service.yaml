@@ -1,0 +1,21 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: voting-result
+  annotations:
+#    service.beta.kubernetes.io/aws-load-balancer-internal: 'true'
+#    service.beta.kubernetes.io/aws-load-balancer-additional-resource-tags: Platform:TLA=awsrefeks,Platform:CostCode=SN41465,Platform:Environment=dev,Platform:BusinessVertical=infra,CiCd:CdkPpbApp=true
+#    external-dns.alpha.kubernetes.io/hostname: results.infra-dev.aws.private
+  labels:
+    name: voting-result-service
+    app: voting-app
+spec:
+#  type: LoadBalancer
+  ports:
+  - port: 80
+    targetPort: 80
+  selector:
+    name: voting-result-pod
+    app: voting-app
+    type: be

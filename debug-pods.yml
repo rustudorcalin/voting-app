@@ -1,0 +1,15 @@
+kind: Pod
+apiVersion: v1
+metadata:
+  name: debug
+spec:
+#  serviceAccountName: rttvvp-sa
+  containers:
+  - image: praqma/network-multitool:latest
+    name: nginx
+    command: ["/bin/sh"]
+#    args: ["-c", "aws s3 ls"]
+#    args: ["-c", "echo 'helloworld' > file.txt; aws s3 cp file.txt s3://rttvvp-nxt-ephemeral/"]
+#    args: ["-c", "aws s3 cp s3://rttvvp-nxt-ephemeral/decorator-61-SNAPSHOT.jar ."]
+    args: ["-c", "nc -zv voting-app 80"]
+#    args: ["-c", "curl http://voting-app/static/stylesheets/style.css"]

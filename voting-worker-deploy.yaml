@@ -1,0 +1,27 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: worker-app-deploy
+  labels:
+    name: worker-app-deploy
+    app: voting-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: worker-app-pod
+      app: voting-app
+      type: be
+  template:
+    metadata:
+      name: worker-app-pod
+      labels:
+        name: worker-app-pod
+        app: voting-app
+        type: be
+    spec:
+      containers:
+      - name: worker-app
+        image: calinrus/voting-app-worker:2.0
+        imagePullPolicy: Always

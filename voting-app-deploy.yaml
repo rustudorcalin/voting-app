@@ -1,0 +1,29 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: voting-app-deploy
+  labels:
+    name: voting-app-deploy
+    app: voting-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      name: voting-app-pod
+      app: voting-app
+      type: fe
+  template:
+    metadata:
+      name: voting-app-pod
+      labels:
+        name: voting-app-pod
+        app: voting-app
+        type: fe
+    spec:
+      containers:
+      - name: voting-app
+        image: calinrus/voting-app:2.0
+        ports:
+        - containerPort: 80
+        imagePullPolicy: Always
